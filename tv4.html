@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông Tin Thành Viên</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background-color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 1.8em;
+        }
+        .nav-links ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+        .nav-links ul li {
+            margin-left: 30px;
+            position: relative;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #7b4cff;
+        }
+        .has-dropdown:hover .dropdown {
+            display: block;
+        }
+        .dropdown {
+            display: none;
+            position: absolute;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            list-style: none;
+            padding: 10px 0;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .dropdown li a {
+            padding: 10px 20px;
+            display: block;
+            white-space: nowrap;
+        }
+        .btn-contact {
+            background-color: #7b4cff;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        .btn-contact:hover {
+            background-color: #5229cc;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 120px 20px 50px 20px;
+            min-height: calc(100vh - 120px - 62px);
+            box-sizing: border-box;
+        }
+
+        .floating-container {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .card-container {
+            perspective: 1500px;
+            
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .card {
+            width: 420px;
+            height: 550px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2), 0 10px 10px rgba(0,0,0,0.15);
+            border-radius: 20px;
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        .card-front {
+         
+            background: radial-gradient(ellipse at center, #946eff, #7b4cff);
+            color: white;
+        }
+
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        .nickname {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .motto {
+            font-style: italic;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .info-section {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .info-section h3 {
+            border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .info-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 1.1em;
+        }
+
+        .info-section ul li {
+            margin-bottom: 8px;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .flip-button {
+            background-color: white;
+            color: #7b4cff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            margin-top: auto;
+            transition: all 0.3s;
+        }
+
+        .flip-button:hover {
+            background-color: #f0f2f5;
+            color: #5229cc;
+            transform: scale(1.05);
+        }
+
+        .card-back {
+            background: white;
+            color: #333;
+            transform: rotateY(180deg);
+            justify-content: center;
+        }
+        
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0;
+            transition: color 0.3s ease;
+        }
+
+        .close-button:hover {
+            color: #333;
+        }
+
+        .philosophy {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .philosophy h2 {
+            color: #7b4cff;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .philosophy p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .card-container.flipped .card {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">designer.</div>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="#" class="active">home</a></li>
+                    <li><a href="#">about</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">members</a>
+                       
+                    </li>
+                </ul>
+            </nav>
+            <a href="#" class="btn-contact">contact</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="floating-container">
+            <div class="card-container" id="cardContainer">
+                <div class="card">
+                    <div class="card-front">
+                        <img src="quang.jpg" alt="Ảnh đại diện" class="profile-picture">
+                        <div class="nickname">Vu Minh Quang</div>
+                        <div class="motto">"Login/Register (JWT)"</div>
+
+
+                        <div class="info-section contact-info">
+                            <h3>Contact</h3>
+                            <ul>
+                                <li>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></li>
+                                <li>GitHub: <a href="https://github.com/yourusername" target="_blank">yourusername</a></li>
+                            </ul>
+                        </div>
+
+                        <button class="flip-button" onclick="document.getElementById('cardContainer').classList.toggle('flipped')">Xem thêm</button>
+                    </div>
+                    <div class="card-back">
+                        <button class="close-button" onclick="document.getElementById('cardContainer').classList.remove('flipped')">&times;</button>
+
+                        <div class="philosophy">
+                            <h2>Life Philosophy</h2>
+                            <p>"The advance of technology is based on making it fit in so that you don’t really even notice it, so it’s part of everyday life."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Nhóm 5 - Firefly Team.</p>
+        </div>
+    </footer>
+</body>
+</html>
