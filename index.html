@@ -1,44 +1,79 @@
-
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Header & Footer Sample</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="index.css"/>
 </head>
 <body>
-  <!-- HEADER -->
   <header>
     <div class="container">
       <div class="logo">designer.</div>
       <nav class="nav-links">
         <ul>
-          <li><a href="#" class="active">home</a></li>
-          <li><a href="#">about</a></li>
+          <li><a href="#top" class="active">home</a></li>
+          <li><a href="#about">about</a></li>
           <li class="has-dropdown">
-            <a href="#">members</a>
+            <a href="#members">members</a>
             <ul class="dropdown">
-              <li><a href="tv1.html">Thành viên 1</a></li>
-              <li><a href="tv2.html">Thành viên 2</a></li>
-              <li><a href="tv3.html">Thành viên 3</a></li>
-              <li><a   href="tv4.html">Thành viên 4</a></li>
-              <li><a href="tv5.html">Thành viên 5</a></li>
+              <li><a href="tv1.html">Member 1</a></li>
+              <li><a href="tv2.html">Member 2</a></li>
+              <li><a href="tv3.html">Member 3</a></li>
+              <li><a href="tv4.html">Member 4</a></li>
+              <li><a href="tv5.html">Member 5</a></li>
             </ul>
           </li>
         </ul>
       </nav>
-      <a href="#" class="btn-contact">contact</a>
+      <a href="#contact" class="btn-contact">contact</a>
     </div>
   </header>
 
   <div class="spacer"></div>
 
-  <footer>
+  <section class="about-section" id="about">
     <div class="container">
-      <p>&copy; 2025 Nhóm 5 - Firefly Team.</p>
+      <h2>About Us</h2>
+      <p>The Firefly Team is a group of 5 young, creative, and passionate members. Together, we build high-quality products that reflect our individual styles through teamwork and continuous learning.</p>
+    </div>
+  </section>
+
+  <section class="container members-section" id="members">
+    <div class="member slide-left">
+      <img src="sa.jpg" alt="Member 1">
+      <h3>Nguyen Le Tuan</h3>
+      <p>Developer</p>
+    </div>
+    <div class="member slide-right">
+      <img src="dung.jpg" alt="Member 2">
+      <h3>Tran Quang Dung</h3>
+      <p>Designer</p>
+    </div>
+    <div class="member slide-left">
+      <img src="lam.jpg" alt="Member 3">
+      <h3>Nguyen Truong Lam</h3>
+      <p>Project Manager</p>
+    </div>
+    <div class="member slide-right">
+      <img src="quang.jpg" alt="Member 4">
+      <h3>Vu Minh Quang</h3>
+      <p>Tester</p>
+    </div>
+    <div class="member slide-left">
+      <img src="soai.jpg" alt="Member 5">
+      <h3>Hoang Nguyen Soai</h3>
+      <p>Data Analyst</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" id="contact">
+      <p>&copy; 2025 Group 5 - Firefly Team.</p>
     </div>
   </footer>
+
+  <script src="index.js"></script>
 </body>
 </html>
