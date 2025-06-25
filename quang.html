@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thông Tin Thành Viên</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background-color: #f0f2f5;
+        color: #333;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      header {
+        background-color: white;
+        padding: 15px 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+      }
+
+      /* Dropdown Menu */
+      .has-dropdown {
+        position: relative;
+      }
+      .dropdown {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: opacity 0.3s, transform 0.3s;
+        z-index: 10;
+        min-width: 200px;
+      }
+      .dropdown li {
+        list-style: none;
+      }
+      .dropdown li a:hover {
+        background: #f0f0f0;
+      }
+      .has-dropdown:hover .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      /* ABOUT SECTION */
+      .about-section {
+        text-align: center;
+        padding: 40px 0;
+        background-color: #efeaff;
+      }
+
+      .about-section .container {
+        background: #fff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+      }
+
+      .about-section h2 {
+        font-size: 28px;
+        margin-bottom: 15px;
+      }
+
+      .about-section p {
+        font-size: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      /* Scroll animation states */
+      .about-section,
+      .slide-left,
+      .slide-right {
+        opacity: 0;
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .slide-left {
+        transform: translateX(-40px);
+      }
+      .slide-right {
+        transform: translateX(40px);
+      }
+      .fade-in {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        font-weight: 700;
+        font-size: 1.8em;
+      }
+      .nav-links ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        align-items: center;
+      }
+      .nav-links ul li {
+        position: relative;
+        text-transform: lowercase;
+        padding: 0.5rem 1rem;
+      }
+      .dropdown-list {
+        padding: 0 !important;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 600;
+        font-size: 0.9em;
+        transition: color 0.3s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: #7b4cff;
+      }
+      .has-dropdown:hover .dropdown {
+        display: block;
+      }
+      .dropdown {
+        display: none;
+        position: absolute;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        list-style: none;
+        padding: 10px 0;
+        margin-top: 10px;
+        border-radius: 10px;
+      }
+      .dropdown li a {
+        padding: 15px 20px;
+        border-radius: 5px;
+        display: block;
+        white-space: nowrap;
+        text-align: center;
+        text-transform: capitalize;
+        font-weight: bolder;
+      }
+      .btn-contact {
+        background-color: #7b4cff;
+        color: white;
+        padding: 10px 25px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s;
+      }
+      .btn-contact:hover {
+        background-color: #5229cc;
+      }
+      footer {
+        background-color: #333;
+        color: white;
+        padding: 5px 0;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
+
+      main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 120px 20px 50px 20px;
+        min-height: calc(100vh - 120px - 110px);
+      }
+
+      .floating-container {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .card-container {
+        perspective: 1500px;
+
+        font-family: "Times New Roman", Times, serif;
+      }
+
+      .card {
+        width: 420px;
+        height: 460px;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2),
+          0 10px 10px rgba(0, 0, 0, 0.15);
+        border-radius: 20px;
+      }
+
+      .card-front,
+      .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+        box-sizing: border-box;
+      }
+
+      .card-front {
+        background: linear-gradient(to top, #ff3838, #ff932f);
+        color: white;
+      }
+
+      .profile-picture {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 5px solid white;
+        object-fit: cover;
+        margin-bottom: 20px;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+      }
+
+      .nickname {
+        font-size: 2.2em;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .motto {
+        font-style: italic;
+        margin-bottom: 25px;
+        text-align: center;
+        font-size: 1.1em;
+      }
+
+      .info-section {
+        width: 100%;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .info-section h3 {
+        border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+        width: 50%;
+        margin: auto;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+        font-size: 1.3em;
+        color: rgb(255, 255, 255);
+      }
+
+      .info-section ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-size: 1.1em;
+      }
+
+      .info-section ul li {
+        margin-bottom: 8px;
+      }
+
+      .contact-info a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .contact-info a:hover {
+        text-decoration: underline;
+      }
+
+      .flip-button {
+        background-color: rgb(255, 255, 255);
+        border: none;
+        color: black;
+        padding: 12px 25px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1em;
+        /* margin-top: auto; */
+        transition: all 0.3s;
+        box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+      }
+
+      .flip-button:hover {
+        background-color: rgb(0, 0, 0);
+        color: white;
+        transform: scale(1.05);
+      }
+      .card-back {
+        background: white;
+        color: #333;
+        transform: rotateY(180deg);
+        justify-content: center;
+      }
+
+      .close-button {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        background: none;
+        border: none;
+        font-size: 2.5em;
+        font-weight: bold;
+        color: #aaa;
+        cursor: pointer;
+        line-height: 1;
+        padding: 0;
+        transition: color 0.3s ease;
+      }
+
+      .close-button:hover {
+        color: #333;
+      }
+
+      .philosophy {
+        text-align: center;
+        padding: 20px;
+      }
+
+      .philosophy h2 {
+        color: #7b4cff;
+        margin-bottom: 20px;
+        font-size: 2em;
+      }
+
+      .philosophy p {
+        font-size: 1.2em;
+        line-height: 1.6;
+      }
+
+      .card-container.flipped .card {
+        transform: rotateY(180deg);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">designer.</div>
+        <nav class="nav-links">
+          <ul>
+            <li><a href="index.html" class="active">home</a></li>
+            <li><a href="index.html#about">about</a></li>
+            <li class="has-dropdown">
+              <a href="#members">members</a>
+              <ul class="dropdown">
+                <li class="dropdown-list"><a href="dung.html">Tran Quang Dung</a></li>
+                <li class="dropdown-list"><a href="tuan.html">Nguyen Le Tuan</a></li>
+                <li class="dropdown-list"><a href="lam.html">Nguyen Truong Lam</a></li>
+                <li class="dropdown-list"><a href="quang.html">Vu Minh Quang</a></li>
+                <li class="dropdown-list"><a href="soai.html">Hoang Nguyen Soai</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <a href="#" class="btn-contact">contact</a>
+      </div>
+    </header>
+
+    <main>
+      <div class="floating-container">
+        <div class="card-container" id="cardContainer">
+          <div class="card">
+            <div class="card-front">
+              <img src="quang.jpg" alt="Ảnh đại diện" class="profile-picture" />
+              <div class="nickname">Vu Minh Quang</div>
+              <div class="motto">Backend Developer</div>
+
+              <div class="info-section contact-info">
+                <h3>QUICK CONTACT</h3>
+                <div
+                  style="
+                    display: flex;
+                    gap: 0.8rem;
+                    justify-content: center;
+                    align-items: center;
+                  "
+                >
+                  <a
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=quangsimeon551@gmail.com"
+                    target="_blank"
+                  >
+                    <img src="./gmail.png" width="30" alt="Gmail" />
+                  </a>
+                  <a href="https://linkedin.com/" target="_blank">
+                    <img src="./linkedln.png" width="30" alt="LinkedIn" />
+                  </a>
+                  <a href="https://web.telegram.org/" target="_blank">
+                    <img src="./telegram.png" width="30" alt="telegram" />
+                  </a>
+                  <a href="https://web.whatsapp.com/" target="_blank">
+                    <img src="./whatsapp.png" width="30" alt="whatsapp" />
+                  </a>
+                </div>
+              </div>
+
+              <a
+                href="https://quang551.github.io/My-portfolio/"
+                class="flip-button"
+                target="_blank"
+
+                >Xem porfolio</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 Nhóm 5 - Firefly Team.</p>
+      </div>
+    </footer>
+  </body>
+</html>
