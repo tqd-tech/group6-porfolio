@@ -58,6 +58,7 @@ header .container {
   border-radius: 6px;
   transition: all 0.3s ease-in-out;
   display: block;
+  font-weight: bold;
 }
 .nav-links a.active,
 .nav-links a:hover {
@@ -98,14 +99,14 @@ header .container {
   transform: translateY(10px);
   transition: opacity 0.3s, transform 0.3s;
   z-index: 10;
-  min-width: 160px;
+  min-width: 200px;
 }
 .dropdown li {
   list-style: none;
 }
 .dropdown li a {
   color: #333;
-  padding: 10px 16px;
+  padding: 10px 16px;text-align: center;
 }
 .dropdown li a:hover {
   background: #f0f0f0;
@@ -165,14 +166,28 @@ header .container {
   display: flex;
   justify-content: space-between;
   text-align: center;
-  margin: 40px auto;
   gap: 20px;
   flex-wrap: wrap;
 }
 .member {
   flex: 1;
   min-width: 150px;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  border: 1px solid #000000;
+  border-radius: 1rem;
+  padding: 1rem 0;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: all 0.6s ease-in-out;
 }
+
+.member:hover {
+  transform: translateY(-15px);
+  background-color: #000000;
+  color: white;
+}
+
 .member img {
   width: 100px;
   height: 100px;
@@ -185,6 +200,16 @@ header .container {
 .member p {
   margin: 0;
   font-size: 14px;
+}
+
+.heading {
+  text-align: center;
+  text-transform: uppercase;
+  background-image: linear-gradient(to right, hsl(307, 100%, 50%), #ff4040);
+  background-clip: text;
+  color: transparent;
+  font-size: 1.6rem;
+  padding: 1rem 0
 }
 
 /* FOOTER */
